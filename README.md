@@ -25,7 +25,7 @@ The suite features **automatic hardware and form factor detection** that queries
 
 When `restore.sh` executes, it automatically detects the connected device and outputs:
 ```text
-==> Target Device: GCC19D04123205VJ
+==> Target Device: <device-serial>
 ==> Detected Hardware: Amazon Fire HD 8 (8-inch display) [Model: KFONWI | Codename: onyx | Resolution: 800x1280]
 ```
 

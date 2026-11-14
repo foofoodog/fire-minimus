@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Amazon Fire 7 (9th Gen, 2019 - mustang) Custom Setup & Restoration Script
-# Generated automatically to restore the clean, debloated, no-login state.
+# Amazon Fire Tablet Universal Custom Setup & Restoration Script (7", 8", 10")
+# Restores a clean, debloated, privacy-first, dark-mode state.
 # ==============================================================================
 
 set -euo pipefail
