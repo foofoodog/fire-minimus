@@ -1,4 +1,4 @@
-# Amazon Fire Tablet Configuration & Restoration Suite
+# Fire-Minimus: Amazon Fire Tablet Configuration & Restoration Suite
 ### Universal Debloat, Privacy, and Performance Suite (7", 8", and 10" Form Factors)
 
 - **Supported OS:** Fire OS 7 (Android 9 Pie / API 28) & Fire OS 6 (Android 7.1 Nougat)
@@ -81,7 +81,7 @@ Before running the restoration script on a new or factory-reset tablet, perform 
 3. Run the script:
 
 ```bash
-cd ~/code/fire_backup
+cd ~/code/fire-minimus
 ./restore.sh
 ```
 
