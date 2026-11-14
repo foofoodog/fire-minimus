@@ -46,6 +46,7 @@ When `restore.sh` executes, it automatically detects the connected device and ou
   - **Aurora Store:** Anonymous, no-login Google Play Store client.
   - **F-Droid:** Free and open-source software repository.
   - **Via Browser:** Ultra-lightweight (~2.4 MB, ~30 MB RAM) fast web browser with native ad-blocking.
+  - **On-Device Guide:** Offline starter guide ([GUIDE.md](GUIDE.md) / `guide.html`) pushed to device storage for quick reference on the home screen.
 - **Ad Blocking:** System-wide DNS-over-TLS ad and tracker blocking via AdGuard Private DNS (`dns.adguard-dns.com`).
 - **Snappy Performance:** 0.5x window, transition, and animator scales.
 - **Dark Mode & Minimalist UI:** System-wide dark theme active (`uimode night yes`), solid black wallpaper applied, and native English QWERTY keyboard (`com.amazon.redstone`) configured.
@@ -67,7 +68,7 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 
 > [!TIP]
 > **Preferred Starting Point: Factory Reset**
-> Performing a **Factory Reset** (**Settings > Device Options > Reset to Factory Defaults**) is strongly preferred before beginning. A factory reset guarantees a completely clean slate—wiping lingering caches, secondary profiles, and leftover junk. After resetting, connect to Wi-Fi, proceed through initial setup without registering an account (or skip account setup), and jump straight to **Step 1 (Enable Developer Mode)**.
+> Performing a **Factory Reset** (**Settings > Device Options > Reset to Factory Defaults**) is strongly preferred before beginning. A factory reset guarantees a completely clean slate, wiping lingering caches, secondary profiles, and leftover junk. After resetting, connect to Wi-Fi, proceed through initial setup without registering an account (or skip account setup), and jump straight to **Step 1 (Enable Developer Mode)**.
 >
 > If you are **not** factory resetting the tablet, proceed through all steps below in their exact order.
 

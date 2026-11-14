@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Fire-Minimus</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #121212;
+            --border-color: #272727;
+            --text-main: #e6e6e6;
+            --text-muted: #999999;
+            --accent: #4da3ff;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 24px 20px 48px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            margin: 28px 0;
+        }
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+        .app-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-bottom: 14px;
+        }
+        .app-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+        .app-desc {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin: 0;
+        }
+        .info-box {
+            background: #16181c;
+            border-left: 3px solid var(--accent);
+            padding: 14px 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Fire-Minimus</h1>
+        <div class="subtitle">This tablet is set up to be simple, fast, and ready to use for reading, browsing, and media.</div>
+
+        <hr>
+
+        <h2>Getting Apps</h2>
+        <div class="subtitle" style="margin-bottom: 16px; font-size: 0.95rem;">You have two app stores to choose from:</div>
+
+        <div class="app-card">
+            <div class="app-title">Aurora Store</div>
+            <p class="app-desc">Your main store for familiar Android apps directly from the Google Play Store (streaming services, music, utilities, and more). You can search and install apps as an anonymous guest without needing a Google account.</p>
+        </div>
+
+        <div class="app-card">
+            <div class="app-title">F-Droid</div>
+            <p class="app-desc">An alternative store for free, community-made open-source apps. Great for simple tools, e-readers, offline navigation, and basic games with no logins or ads.</p>
+        </div>
+
+        <hr>
+
+        <h2>Browsing the Web</h2>
+        <div class="app-card">
+            <div class="app-title">Via Browser</div>
+            <p class="app-desc">A lightweight, fast web browser with built-in ad blocking for everyday browsing.</p>
+        </div>
+
+        <hr>
+
+        <h2>What About the Amazon Apps?</h2>
+        <p class="app-desc">You might see an Amazon Appstore icon, Kindle, or a banner asking to "Register Device."</p>
+        
+        <div class="info-box">
+            You do not need an Amazon account to use this tablet, download apps, or browse the internet. You can safely ignore these Amazon features. Or, if you already have an Amazon account, you can choose to sign in and use them if you'd like. Either way, everything else works right out of the box.
+        </div>
+    </div>
+</body>
+</html>

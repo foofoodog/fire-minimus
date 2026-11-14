@@ -161,6 +161,13 @@ if [ -f "$SCRIPT_DIR/apks/ViaBrowser.apk" ]; then
     adb -s "$DEVICE" install -r -g "$SCRIPT_DIR/apks/ViaBrowser.apk"
 fi
 
+# Push Fire-Minimus Device Guide
+if [ -f "$SCRIPT_DIR/guide.html" ]; then
+    echo "==> Pushing Fire-Minimus device guide..."
+    adb -s "$DEVICE" shell "mkdir -p /sdcard/Documents" >/dev/null 2>&1 || true
+    adb -s "$DEVICE" push "$SCRIPT_DIR/guide.html" /sdcard/Documents/guide.html >/dev/null 2>&1 || true
+fi
+
 # 7. Restore Solid Black Wallpaper
 echo "==> Restoring solid black wallpaper..."
 adb -s "$DEVICE" shell input keyevent 224 >/dev/null 2>&1 || true

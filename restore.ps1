@@ -189,6 +189,14 @@ foreach ($item in $Apks) {
     }
 }
 
+# Push Fire-Minimus Device Guide
+$GuidePath = Join-Path $ScriptDir "guide.html"
+if (Test-Path $GuidePath) {
+    Write-Host "==> Pushing Fire-Minimus device guide..." -ForegroundColor Cyan
+    adb -s $Device shell "mkdir -p /sdcard/Documents" 2>$null | Out-Null
+    adb -s $Device push $GuidePath /sdcard/Documents/guide.html 2>$null | Out-Null
+}
+
 # 7. Restore Solid Black Wallpaper
 Write-Host "==> Restoring solid black wallpaper..." -ForegroundColor Cyan
 adb -s $Device shell input keyevent 224 2>$null | Out-Null
