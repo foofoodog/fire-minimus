@@ -7,7 +7,7 @@
 
 ---
 
-## 🎯 Mission
+## Mission
 
 The goal of this project is simple: **keep capable hardware in use and out of landfills**.
 
