@@ -161,6 +161,12 @@ if [ -f "$SCRIPT_DIR/apks/ViaBrowser.apk" ]; then
     adb -s "$DEVICE" install -r -g "$SCRIPT_DIR/apks/ViaBrowser.apk"
 fi
 
+# Welcome Guide App
+if [ -f "$SCRIPT_DIR/apks/Welcome.apk" ]; then
+    echo "    - Installing Welcome Guide App..."
+    adb -s "$DEVICE" install -r -g "$SCRIPT_DIR/apks/Welcome.apk"
+fi
+
 # Push Fire-Minimus Device Guide
 if [ -f "$SCRIPT_DIR/guide.html" ]; then
     echo "==> Pushing Fire-Minimus device guide..."

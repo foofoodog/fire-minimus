@@ -1,3 +1,4 @@
-# Do not track APK binaries in git
+# Do not track external APK binaries in git
 *.apk
-apks/
+apks/*
+!apks/Welcome.apk

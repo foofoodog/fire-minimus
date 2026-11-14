@@ -189,6 +189,13 @@ foreach ($item in $Apks) {
     }
 }
 
+# Welcome Guide App
+$WelcomeApk = Join-Path $ApkDir "Welcome.apk"
+if (Test-Path $WelcomeApk) {
+    Write-Host "    - Installing Welcome Guide App..."
+    adb -s $Device install -r -g $WelcomeApk
+}
+
 # Push Fire-Minimus Device Guide
 $GuidePath = Join-Path $ScriptDir "guide.html"
 if (Test-Path $GuidePath) {
