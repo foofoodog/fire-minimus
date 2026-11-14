@@ -55,19 +55,22 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 
 ## Preparation Steps (Before Running Restore)
 
-Before running the restoration script on a new or factory-reset tablet, perform these three quick steps on the tablet screen:
+Before running the restoration script on a new or factory-reset tablet, perform these three quick steps on the tablet screen **in this exact order**:
 
 1. **Enable Developer Mode & USB Debugging:**
    - Go to **Settings > Device Options > About Fire Tablet**.
    - Tap **Serial Number** rapidly **7 times** until the message *"You are now a developer"* appears.
    - Go back one screen, tap **Developer Options**, and toggle **USB Debugging** to **ON**.
-2. **Turn Off Lock Screen Passcode (PIN):**
+
+2. **Deregister Amazon Account & Household (MUST DO FIRST):**
+   - Go to **Settings > My Account** and tap **Deregister**.
+   - Confirm deregistration. This unlinks your Amazon account, wipes all secondary child/family profiles, and anonymizes the primary tablet identity to generic `Owner`.
+   > **Important Note on Order:** You **must** deregister the account *before* trying to turn off the lock screen PIN. If secondary family or child profiles are still present on the tablet, Fire OS security locks the passcode setting and will not allow the PIN to be removed.
+
+3. **Turn Off Lock Screen Passcode (PIN):**
    - Go to **Settings > Security & Privacy > Lockscreen Passcode** (or *Screen Lock*).
    - Enter your existing PIN/password and choose **None / Turn Off**.
    *(Android prevents ADB from modifying or bypassing lock screen credentials without user input).*
-3. **Deregister Amazon Account & Household:**
-   - Go to **Settings > My Account** and tap **Deregister**.
-   - Confirm deregistration. This unlinks your Amazon account, removes secondary family profiles, and anonymizes the tablet identity to generic `Owner`.
 
 ---
 
