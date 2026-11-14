@@ -170,6 +170,8 @@ if [ -f "$SCRIPT_DIR/wallpaper/black.png" ]; then
     fi
 fi
 
-adb -s "$DEVICE" shell input keyevent KEYCODE_HOME
+# 8. Reboot to Flush Memory & Finalize
+echo "==> Rebooting tablet to flush inactive memory and lock in optimizations..."
+adb -s "$DEVICE" reboot >/dev/null 2>&1 || true
 
-echo "==> Restoration complete! Device is sleek, debloated, and running in dark mode."
+echo "==> Restoration complete! Tablet is rebooting into a sleek, debloated, dark-mode state."

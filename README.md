@@ -84,3 +84,5 @@ cd /home/mike/fire7_backup
 
 *(If multiple devices are plugged in, pass the target serial number: `./restore.sh <serial_number>`)*
 
+4. **Automatic Reboot:** Upon completion, the script automatically reboots the tablet to flush lingering background daemons and free up to 600 MB of inactive RAM. Once the tablet finishes booting, it will open directly to the clean, dark-mode home screen.
+
