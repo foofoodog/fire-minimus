@@ -46,10 +46,8 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 ## Repository Contents
 
 - `restore.sh`: The master bash script that configures the device, fetches official APKs on the fly, and applies all settings.
-- `packages_disabled.txt`: Full record of all 34 disabled system packages.
-- `packages_thirdparty.txt`: Record of installed third-party user applications.
+- `packages_disabled.txt`: Full record of all 37 disabled system packages.
 - `wallpaper/black.png`: Pure black background asset for home and lock screens.
-- `settings_global.txt`, `settings_secure.txt`, `settings_system.txt`: Dumps of Android OS settings tables.
 
 ---
 
