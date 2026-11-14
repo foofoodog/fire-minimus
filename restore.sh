@@ -125,7 +125,7 @@ if [ -f "$SCRIPT_DIR/wallpaper/black.png" ]; then
         H="${WM_SIZE#*x}"
         if [ -n "$W" ] && [ -n "$H" ] && [ "$W" -gt 0 ] 2>/dev/null; then
             TAP_X=$((W / 2))
-            TAP_Y=$((H - 70))
+            TAP_Y=$((H * 92 / 100))
         else
             TAP_X=300
             TAP_Y=940
