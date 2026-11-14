@@ -107,14 +107,17 @@ fi
 
 # 7. Restore Solid Black Wallpaper
 echo "==> Restoring solid black wallpaper..."
+adb -s "$DEVICE" shell input keyevent 224 >/dev/null 2>&1 || true
+adb -s "$DEVICE" shell input keyevent 82 >/dev/null 2>&1 || true
 if [ -f "$SCRIPT_DIR/wallpaper/black.png" ]; then
     adb -s "$DEVICE" push "$SCRIPT_DIR/wallpaper/black.png" /sdcard/Pictures/black.png >/dev/null
     adb -s "$DEVICE" shell "am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/Pictures/black.png" >/dev/null
+    sleep 1
     # Get media ID
     MEDIA_ID=$(adb -s "$DEVICE" shell "content query --uri content://media/external/images/media --projection _id:_data | grep black.png" | sed -n 's/.*_id=\([0-9]*\).*/\1/p' | tr -d '\r\n')
     if [ -n "$MEDIA_ID" ]; then
         adb -s "$DEVICE" shell am start -n com.android.wallpaper/.picker.StandalonePreviewActivity -d content://media/external/images/media/"$MEDIA_ID" -t image/png --grant-read-uri-permission >/dev/null
-        sleep 1
+        sleep 2
         adb -s "$DEVICE" shell "input tap 299 939" >/dev/null
         sleep 1
     fi
