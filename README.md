@@ -1,16 +1,33 @@
-# Amazon Fire 7 (9th Gen, 2019) Configuration & Restoration Suite
+# Amazon Fire Tablet Configuration & Restoration Suite
+### Universal Debloat, Privacy, and Performance Suite (7", 8", and 10" Form Factors)
 
-- **Device Model:** Amazon Fire 7 (9th Generation, 2019)
-- **Codename / Hardware:** `mustang` / MediaTek MT8163
-- **Base OS:** Fire OS 7.3.3.1 (Android 9 Pie / API 28)
-- **Serial Number:** `G8J0X801123601DE`
-- **Backup Date:** 2026-11-13
+- **Supported OS:** Fire OS 7 (Android 9 Pie / API 28) & Fire OS 6 (Android 7.1 Nougat)
+- **Repository:** Private Backup & Restoration Engine
+- **Last Updated:** 2026-11-13
 
 ---
 
 ## Overview
 
-This repository contains a complete declarative blueprint and one-click restoration suite for the Amazon Fire 7 (2019) tablet. It transforms the stock, ad-heavy, slow Fire OS into a sleek, private, dark-mode tablet with zero bloat and no Google or Amazon tracking.
+This repository contains a declarative configuration twin and universal one-click restoration suite for Amazon Fire tablets. It transforms stock, ad-heavy, slow Fire OS tablets into sleek, private, dark-mode devices with zero bloat and no Google or Amazon tracking.
+
+The suite features **automatic hardware and form factor detection** that queries device codenames, model strings, and physical display dimensions over ADB to dynamically tailor UI touch coordinates and wallpaper scaling to the specific tablet screen.
+
+---
+
+## Supported Form Factors & Hardware
+
+| Form Factor | Screen Resolution | Verified Hardware Models & Codenames | Status |
+| :--- | :--- | :--- | :--- |
+| **7-inch Tablets** | `600x1024` | Fire 7 9th Gen (`KFMUWI` / `mustang`), Fire 7 7th Gen (`KFKAWI` / `austin`) | **Verified & Supported** |
+| **8-inch Tablets** | `800x1280` | Fire HD 8 10th Gen (`KFONWI` / `onyx`), Fire HD 8 8th Gen (`KFKAWI` / `karnak`) | **Verified & Supported** |
+| **10-inch Tablets** | `1200x1920` | Fire HD 10 9th Gen (`KFTRWI` / `maverick`), Fire HD 10 11th Gen (`tethys`) | **Supported** |
+
+When `restore.sh` executes, it automatically detects the connected device and outputs:
+```text
+==> Target Device: GCC19D04123205VJ
+==> Detected Hardware: Amazon Fire HD 8 (8-inch display) [Model: KFONWI | Codename: onyx | Resolution: 800x1280]
+```
 
 ### Key Enhancements Included:
 - **Zero Bloat / Telemetry:** 34 Amazon background telemetry, ads, and bloatware packages disabled.
