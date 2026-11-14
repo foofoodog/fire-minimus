@@ -81,7 +81,7 @@ Before running the restoration script on a new or factory-reset tablet, perform 
 3. Run the script:
 
 ```bash
-cd /home/mike/fire7_backup
+cd ~/code/fire_backup
 ./restore.sh
 ```
 
