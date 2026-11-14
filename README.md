@@ -36,15 +36,34 @@ This repository contains a complete declarative blueprint and one-click restorat
 
 ---
 
+## Preparation Steps (Before Running Restore)
+
+Before running the restoration script on a new or factory-reset tablet, perform these three quick steps on the tablet screen:
+
+1. **Enable Developer Mode & USB Debugging:**
+   - Go to **Settings > Device Options > About Fire Tablet**.
+   - Tap **Serial Number** rapidly **7 times** until the message *"You are now a developer"* appears.
+   - Go back one screen, tap **Developer Options**, and toggle **USB Debugging** to **ON**.
+2. **Turn Off Lock Screen Passcode (PIN):**
+   - Go to **Settings > Security & Privacy > Lockscreen Passcode** (or *Screen Lock*).
+   - Enter your existing PIN/password and choose **None / Turn Off**.
+   *(Android prevents ADB from modifying or bypassing lock screen credentials without user input).*
+3. **Deregister Amazon Account & Household:**
+   - Go to **Settings > My Account** and tap **Deregister**.
+   - Confirm deregistration. This unlinks your Amazon account, removes secondary family profiles, and anonymizes the tablet identity to generic `Owner`.
+
+---
+
 ## How to Restore
 
-1. Enable **Developer Options** and **USB Debugging** on the tablet (*Settings > Device Options > About Fire Tablet > Tap Serial Number 7 times*).
-2. Connect the tablet to this machine via USB and approve the ADB authorization prompt.
-3. Run:
+1. Connect the tablet to this machine via USB.
+2. Check the tablet screen and tap **"Always allow from this computer"** on the USB Debugging authorization prompt.
+3. Run the script:
 
 ```bash
+cd /home/mike/fire7_backup
 ./restore.sh
 ```
 
-*(If multiple devices are plugged in, provide the target serial: `./restore.sh <serial_number>`)*
+*(If multiple devices are plugged in, pass the target serial number: `./restore.sh <serial_number>`)*
 
