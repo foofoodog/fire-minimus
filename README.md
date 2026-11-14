@@ -7,6 +7,16 @@
 
 ---
 
+## 🎯 Mission Statement
+
+> **Salvaging potential e-waste into responsive, privacy-respecting daily drivers.**
+>
+> In an era where new hardware is increasingly cost-prohibitive and planned obsolescence turns functional electronics into drawer junk, **Fire-Minimus** exists to keep capable hardware in active use and out of landfills.
+>
+> Millions of Amazon Fire tablets sit neglected or discarded simply because intrusive advertising, telemetry daemons, and corporate bloatware bring their modest hardware to a crawl. By stripping away surveillance frameworks, ad delivery engines, and inactive background services, Fire-Minimus resurrects these budget tablets into **fast, battery-efficient, and distraction-free devices for content consumption, reading, media, and communication**—giving discarded hardware a second life at zero additional cost.
+
+---
+
 ## Overview
 
 This repository contains a declarative configuration twin and universal one-click restoration suite for Amazon Fire tablets. It transforms stock, ad-heavy, slow Fire OS tablets into sleek, private, dark-mode devices with zero bloat and no Google or Amazon tracking.
