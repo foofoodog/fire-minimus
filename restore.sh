@@ -33,7 +33,7 @@ while IFS= read -r line || [ -n "$line" ]; do
     pkg="$(echo "$pkg" | tr -d '\r\n ')"
     if [ -n "$pkg" ]; then
         echo "    - Disabling $pkg"
-        adb -s "$DEVICE" shell "pm disable-user --user 0 $pkg" >/dev/null 2>&1 || true
+        adb -s "$DEVICE" shell "pm disable-user --user 0 $pkg" </dev/null >/dev/null 2>&1 || true
     fi
 done < "$SCRIPT_DIR/packages_disabled.txt"
 
@@ -110,15 +110,16 @@ echo "==> Restoring solid black wallpaper..."
 adb -s "$DEVICE" shell input keyevent 224 >/dev/null 2>&1 || true
 adb -s "$DEVICE" shell input keyevent 82 >/dev/null 2>&1 || true
 if [ -f "$SCRIPT_DIR/wallpaper/black.png" ]; then
-    adb -s "$DEVICE" push "$SCRIPT_DIR/wallpaper/black.png" /sdcard/Pictures/black.png >/dev/null
-    adb -s "$DEVICE" shell "am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/Pictures/black.png" >/dev/null
-    sleep 1
-    # Get media ID
-    MEDIA_ID=$(adb -s "$DEVICE" shell "content query --uri content://media/external/images/media --projection _id:_data | grep black.png" | sed -n 's/.*_id=\([0-9]*\).*/\1/p' | tr -d '\r\n')
+    adb -s "$DEVICE" push "$SCRIPT_DIR/wallpaper/black.png" /storage/emulated/0/Pictures/black.png >/dev/null 2>&1 || true
+    adb -s "$DEVICE" shell "am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///storage/emulated/0/Pictures/black.png" >/dev/null 2>&1 || true
+    sleep 2
+    # Get media ID safely without pipefail exit
+    MEDIA_ID=$( (adb -s "$DEVICE" shell "content query --uri content://media/external/images/media --projection _id:_data" 2>/dev/null || true) | grep black.png | head -n 1 | sed -n 's/.*_id=\([0-9]*\).*/\1/p' | tr -d '\r\n' || true )
     if [ -n "$MEDIA_ID" ]; then
-        adb -s "$DEVICE" shell am start -n com.android.wallpaper/.picker.StandalonePreviewActivity -d content://media/external/images/media/"$MEDIA_ID" -t image/png --grant-read-uri-permission >/dev/null
+        echo "    - Applying black wallpaper (Media ID $MEDIA_ID)..."
+        adb -s "$DEVICE" shell am start -n com.android.wallpaper/.picker.StandalonePreviewActivity -d content://media/external/images/media/"$MEDIA_ID" -t image/png --grant-read-uri-permission >/dev/null 2>&1 || true
         sleep 2
-        adb -s "$DEVICE" shell "input tap 299 939" >/dev/null
+        adb -s "$DEVICE" shell "input tap 299 939" >/dev/null 2>&1 || true
         sleep 1
     fi
 fi
