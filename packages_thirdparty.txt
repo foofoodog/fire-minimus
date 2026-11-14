@@ -1,0 +1,3 @@
+package:mark.via.gp
+package:com.aurora.store
+package:org.fdroid.fdroid
