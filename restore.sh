@@ -119,7 +119,18 @@ if [ -f "$SCRIPT_DIR/wallpaper/black.png" ]; then
         echo "    - Applying black wallpaper (Media ID $MEDIA_ID)..."
         adb -s "$DEVICE" shell am start -n com.android.wallpaper/.picker.StandalonePreviewActivity -d content://media/external/images/media/"$MEDIA_ID" -t image/png --grant-read-uri-permission >/dev/null 2>&1 || true
         sleep 2
-        adb -s "$DEVICE" shell "input tap 299 939" >/dev/null 2>&1 || true
+        # Calculate dynamic button tap coordinates based on screen resolution
+        WM_SIZE=$(adb -s "$DEVICE" shell wm size 2>/dev/null | awk '{print $NF}' | tr -d '\r\n')
+        W="${WM_SIZE%x*}"
+        H="${WM_SIZE#*x}"
+        if [ -n "$W" ] && [ -n "$H" ] && [ "$W" -gt 0 ] 2>/dev/null; then
+            TAP_X=$((W / 2))
+            TAP_Y=$((H - 70))
+        else
+            TAP_X=300
+            TAP_Y=940
+        fi
+        adb -s "$DEVICE" shell "input tap $TAP_X $TAP_Y" >/dev/null 2>&1 || true
         sleep 1
     fi
 fi
