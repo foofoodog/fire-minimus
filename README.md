@@ -7,13 +7,11 @@
 
 ---
 
-## 🎯 Mission Statement
+## 🎯 Mission
 
-> **Salvaging potential e-waste into responsive, privacy-respecting daily drivers.**
->
-> In an era where new hardware is increasingly cost-prohibitive and planned obsolescence turns functional electronics into drawer junk, **Fire-Minimus** exists to keep capable hardware in active use and out of landfills.
->
-> Millions of Amazon Fire tablets sit neglected or discarded simply because intrusive advertising, telemetry daemons, and corporate bloatware bring their modest hardware to a crawl. By stripping away surveillance frameworks, ad delivery engines, and inactive background services, Fire-Minimus resurrects these budget tablets into **fast, battery-efficient, and distraction-free devices for content consumption, reading, media, and communication**—giving discarded hardware a second life at zero additional cost.
+The goal of this project is simple: **keep capable hardware in use and out of landfills**.
+
+Many of these tablets end up forgotten in drawers or discarded as e-waste simply because heavy background services and ads slow them down over time. By stripping away unnecessary background overhead, **Fire-Minimus** repurposes inexpensive, existing Fire tablets into clean, battery-efficient, and responsive devices for reading, media consumption, web browsing, and lightweight communication.
 
 ---
 
