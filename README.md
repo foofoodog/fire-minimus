@@ -30,7 +30,9 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 ```
 
 ### Key Enhancements Included:
-- **Zero Bloat / Telemetry:** 34 Amazon background telemetry, ads, and bloatware packages disabled.
+- **Zero Bloat / Telemetry:** 46 Amazon background telemetry, ads, and bloatware packages disabled (including Wi-Fi Locker, shopping trailers, and Alexa daemons).
+- **Protected Service Restrictions:** AppOps enforcement on system-protected Amazon services (`kso` lockscreen ads, `metrics`, `whisperlink`, and `crashmanager`/`logmanager`) stripping background execution and wakelocks.
+- **Deep Sleep & Battery Optimization:** Telemetry services stripped from Android Doze whitelist exemptions; background BLE and Wi-Fi hotspot scanning disabled.
 - **Google Framework Removed:** Full removal of Google Play Services, Play Store, and Google Service Framework.
 - **Privacy Stores & Browser:**
   - **Aurora Store:** Anonymous, no-login Google Play Store client.
@@ -46,7 +48,7 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 ## Repository Contents
 
 - `restore.sh`: The master bash script that configures the device, fetches official APKs on the fly, and applies all settings.
-- `packages_disabled.txt`: Full record of all 37 disabled system packages.
+- `packages_disabled.txt`: Full record of all 46 disabled system packages.
 - `wallpaper/black.png`: Pure black background asset for home and lock screens.
 
 ---

@@ -72,23 +72,43 @@ while IFS= read -r line || [ -n "$line" ]; do
     fi
 done < "$SCRIPT_DIR/packages_disabled.txt"
 
-# 2. Block Lockscreen Ads & OTA Updates
-echo "==> Configuring ad blocking and OTA restrictions..."
+# 2. Block Lockscreen Ads, Telemetry & Background Daemons
+echo "==> Configuring ad blocking, telemetry restrictions, and background limits..."
 adb -s "$DEVICE" shell "settings put global LOCKSCREEN_AD_ENABLED 0"
 adb -s "$DEVICE" shell "settings put secure com.amazon.systemui.kso.mode 1"
 adb -s "$DEVICE" shell "settings put global ota_disable_automatic_update 1"
-adb -s "$DEVICE" shell "cmd appops set com.amazon.device.software.ota RUN_IN_BACKGROUND ignore" >/dev/null 2>&1 || true
-adb -s "$DEVICE" shell "cmd appops set com.amazon.device.software.ota RUN_ANY_IN_BACKGROUND ignore" >/dev/null 2>&1 || true
-adb -s "$DEVICE" shell "cmd appops set com.amazon.device.software.ota WAKE_LOCK ignore" >/dev/null 2>&1 || true
 
-# 3. Apply Performance & System UI Tweaks
-echo "==> Applying UI performance tweaks & private ad-blocking DNS..."
+RESTRICT_BACKGROUND_PKGS=(
+    "com.amazon.device.software.ota"
+    "com.amazon.kindle.kso"
+    "com.amazon.client.metrics"
+    "com.amazon.whisperlink.core.android"
+    "com.amazon.device.logmanager"
+    "com.amazon.device.crashmanager"
+)
+
+for r_pkg in "${RESTRICT_BACKGROUND_PKGS[@]}"; do
+    adb -s "$DEVICE" shell "cmd appops set $r_pkg RUN_IN_BACKGROUND ignore" >/dev/null 2>&1 || true
+    adb -s "$DEVICE" shell "cmd appops set $r_pkg RUN_ANY_IN_BACKGROUND ignore" >/dev/null 2>&1 || true
+    adb -s "$DEVICE" shell "cmd appops set $r_pkg WAKE_LOCK ignore" >/dev/null 2>&1 || true
+done
+
+# Strip telemetry and crash loggers from Doze battery saving whitelist
+adb -s "$DEVICE" shell "dumpsys deviceidle whitelist -com.amazon.device.logmanager" >/dev/null 2>&1 || true
+adb -s "$DEVICE" shell "dumpsys deviceidle whitelist -com.amazon.device.crashmanager" >/dev/null 2>&1 || true
+adb -s "$DEVICE" shell "dumpsys deviceidle whitelist -com.amazon.client.metrics" >/dev/null 2>&1 || true
+
+# 3. Apply Performance, Battery & System UI Tweaks
+echo "==> Applying UI performance tweaks, deep sleep settings & private DoT DNS..."
 adb -s "$DEVICE" shell "settings put global window_animation_scale 0.5"
 adb -s "$DEVICE" shell "settings put global transition_animation_scale 0.5"
 adb -s "$DEVICE" shell "settings put global animator_duration_scale 0.5"
 adb -s "$DEVICE" shell "settings put global private_dns_mode hostname"
 adb -s "$DEVICE" shell "settings put global private_dns_specifier dns.adguard-dns.com"
+adb -s "$DEVICE" shell "settings put global wifi_networks_available_notification_on 0"
+adb -s "$DEVICE" shell "settings put global ble_scan_always_enabled 0"
 adb -s "$DEVICE" shell "settings put system sound_effects_enabled 0"
+adb -s "$DEVICE" shell "settings put system lockscreen_sounds_enabled 0"
 adb -s "$DEVICE" shell "settings put system dtmf_tone 0"
 adb -s "$DEVICE" shell "settings put system alexa_enabled 0"
 
