@@ -32,7 +32,7 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 ### Key Enhancements Included:
 - **Zero Bloat / Telemetry:** 46 Amazon background telemetry, ads, and bloatware packages disabled (including Wi-Fi Locker, shopping trailers, and Alexa daemons).
 - **Protected Service Restrictions:** AppOps enforcement on system-protected Amazon services (`kso` lockscreen ads, `metrics`, `whisperlink`, and `crashmanager`/`logmanager`) stripping background execution and wakelocks.
-- **Deep Sleep & Battery Optimization:** Telemetry services stripped from Android Doze whitelist exemptions; background BLE and Wi-Fi hotspot scanning disabled.
+- **Deep Sleep & Battery Optimization:** Native Wi-Fi sleep policy (`wifi_sleep_policy=0`) disconnects radios on lock; telemetry services stripped from Android Doze whitelist exemptions; background BLE and Wi-Fi hotspot scanning disabled.
 - **Google Framework Removed:** Full removal of Google Play Services, Play Store, and Google Service Framework.
 - **Privacy Stores & Browser:**
   - **Aurora Store:** Anonymous, no-login Google Play Store client.
