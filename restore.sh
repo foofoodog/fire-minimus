@@ -26,6 +26,41 @@ fi
 echo "==> Target Device: $DEVICE"
 adb -s "$DEVICE" wait-for-device
 
+# Device & Screen Size Detection (7-inch vs 8-inch vs 10-inch)
+MODEL=$(adb -s "$DEVICE" shell getprop ro.product.model 2>/dev/null | tr -d '\r\n ')
+CODENAME=$(adb -s "$DEVICE" shell getprop ro.product.device 2>/dev/null | tr -d '\r\n ')
+RES=$(adb -s "$DEVICE" shell wm size 2>/dev/null | awk '{print $NF}' | tr -d '\r\n')
+
+case "$RES" in
+    600x1024|1024x600)
+        DEVICE_TYPE="Amazon Fire 7 (7-inch display)"
+        ;;
+    800x1280|1280x800)
+        DEVICE_TYPE="Amazon Fire HD 8 (8-inch display)"
+        ;;
+    1200x1920|1920x1200)
+        DEVICE_TYPE="Amazon Fire HD 10 (10-inch display)"
+        ;;
+    *)
+        case "$MODEL" in
+            KFMUWI|KFKAWI|KFAUWI)
+                DEVICE_TYPE="Amazon Fire 7 (7-inch display)"
+                ;;
+            KFONWI|KFMAWI|KFDOWI)
+                DEVICE_TYPE="Amazon Fire HD 8 (8-inch display)"
+                ;;
+            KFTRWI)
+                DEVICE_TYPE="Amazon Fire HD 10 (10-inch display)"
+                ;;
+            *)
+                DEVICE_TYPE="Amazon Fire Tablet (${MODEL:-Generic})"
+                ;;
+        esac
+        ;;
+esac
+
+echo "==> Detected Hardware: $DEVICE_TYPE [Model: $MODEL | Codename: $CODENAME | Resolution: $RES]"
+
 # 1. Debloat Amazon Bloatware
 echo "==> Disabling Amazon bloatware packages..."
 while IFS= read -r line || [ -n "$line" ]; do
