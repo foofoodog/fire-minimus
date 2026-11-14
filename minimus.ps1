@@ -76,18 +76,58 @@ Write-Host "==> Detected Hardware: $DeviceType [Model: $Model | Codename: $Coden
 
 # 1. Debloat Amazon Bloatware
 Write-Host "==> Disabling Amazon bloatware packages..." -ForegroundColor Cyan
-$DisabledListPath = Join-Path $ScriptDir "packages_disabled.txt"
-if (Test-Path $DisabledListPath) {
-    Get-Content $DisabledListPath | ForEach-Object {
-        $pkg = $_.Trim()
-        if ($pkg.StartsWith("package:")) {
-            $pkg = $pkg.Substring(8)
-        }
-        if (-not [string]::IsNullOrWhiteSpace($pkg)) {
-            Write-Host "    - Disabling $pkg"
-            adb -s $Device shell "pm disable-user --user 0 $pkg" 2>$null | Out-Null
-        }
-    }
+$DisabledPackages = @(
+    "amazon.speech.davs.davcservice",
+    "amazon.speech.sim",
+    "com.amazon.accessorynotifier",
+    "com.amazon.advertisingidsettings",
+    "com.amazon.ags.app",
+    "com.amazon.alexa.multimodal.gemini",
+    "com.amazon.alta.h2clientservice",
+    "com.amazon.avod",
+    "com.amazon.bioscope",
+    "com.amazon.cloud9",
+    "com.amazon.cloud9.contentservice",
+    "com.amazon.cloud9.kids",
+    "com.amazon.comms.kids",
+    "com.amazon.dee.app",
+    "com.amazon.device.backup",
+    "com.amazon.dp.fbcontacts",
+    "com.amazon.dp.logger",
+    "com.amazon.firespotlight",
+    "com.amazon.h2settingsfortablet",
+    "com.amazon.hedwig",
+    "com.amazon.hybridadidservice",
+    "com.amazon.imdb.tv.mobile.app",
+    "com.amazon.kindle",
+    "com.amazon.kor.demo",
+    "com.amazon.mp3",
+    "com.amazon.ods.kindleconnect",
+    "com.amazon.photos",
+    "com.amazon.recess",
+    "com.amazon.sanjayan",
+    "com.amazon.sneakpeek",
+    "com.amazon.tahoe",
+    "com.amazon.tv.ottssocompanionapp",
+    "com.amazon.weather",
+    "com.amazon.wifilocker",
+    "com.amazon.windowshop",
+    "com.amazon.wirelessmetrics.service",
+    "com.android.calendar",
+    "com.android.contacts",
+    "com.android.email",
+    "com.android.music",
+    "com.audible.application.kindle",
+    "com.kingsoft.office.amz",
+    "jp.co.omronsoft.iwnnime.languagepack.kokr_az",
+    "jp.co.omronsoft.iwnnime.languagepack.zhcn_az",
+    "jp.co.omronsoft.iwnnime.languagepack.zhtw_az",
+    "jp.co.omronsoft.iwnnime.mlaz"
+)
+
+foreach ($pkg in $DisabledPackages) {
+    Write-Host "    - Disabling $pkg"
+    adb -s $Device shell "pm disable-user --user 0 $pkg" 2>$null | Out-Null
 }
 
 # 2. Block Lockscreen Ads, Telemetry & Background Daemons

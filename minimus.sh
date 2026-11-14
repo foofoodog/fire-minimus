@@ -63,14 +63,59 @@ echo "==> Detected Hardware: $DEVICE_TYPE [Model: $MODEL | Codename: $CODENAME |
 
 # 1. Debloat Amazon Bloatware
 echo "==> Disabling Amazon bloatware packages..."
-while IFS= read -r line || [ -n "$line" ]; do
-    pkg="${line#package:}"
-    pkg="$(echo "$pkg" | tr -d '\r\n ')"
-    if [ -n "$pkg" ]; then
-        echo "    - Disabling $pkg"
-        adb -s "$DEVICE" shell "pm disable-user --user 0 $pkg" </dev/null >/dev/null 2>&1 || true
-    fi
-done < "$SCRIPT_DIR/packages_disabled.txt"
+PACKAGES_DISABLED=(
+    "amazon.speech.davs.davcservice"
+    "amazon.speech.sim"
+    "com.amazon.accessorynotifier"
+    "com.amazon.advertisingidsettings"
+    "com.amazon.ags.app"
+    "com.amazon.alexa.multimodal.gemini"
+    "com.amazon.alta.h2clientservice"
+    "com.amazon.avod"
+    "com.amazon.bioscope"
+    "com.amazon.cloud9"
+    "com.amazon.cloud9.contentservice"
+    "com.amazon.cloud9.kids"
+    "com.amazon.comms.kids"
+    "com.amazon.dee.app"
+    "com.amazon.device.backup"
+    "com.amazon.dp.fbcontacts"
+    "com.amazon.dp.logger"
+    "com.amazon.firespotlight"
+    "com.amazon.h2settingsfortablet"
+    "com.amazon.hedwig"
+    "com.amazon.hybridadidservice"
+    "com.amazon.imdb.tv.mobile.app"
+    "com.amazon.kindle"
+    "com.amazon.kor.demo"
+    "com.amazon.mp3"
+    "com.amazon.ods.kindleconnect"
+    "com.amazon.photos"
+    "com.amazon.recess"
+    "com.amazon.sanjayan"
+    "com.amazon.sneakpeek"
+    "com.amazon.tahoe"
+    "com.amazon.tv.ottssocompanionapp"
+    "com.amazon.weather"
+    "com.amazon.wifilocker"
+    "com.amazon.windowshop"
+    "com.amazon.wirelessmetrics.service"
+    "com.android.calendar"
+    "com.android.contacts"
+    "com.android.email"
+    "com.android.music"
+    "com.audible.application.kindle"
+    "com.kingsoft.office.amz"
+    "jp.co.omronsoft.iwnnime.languagepack.kokr_az"
+    "jp.co.omronsoft.iwnnime.languagepack.zhcn_az"
+    "jp.co.omronsoft.iwnnime.languagepack.zhtw_az"
+    "jp.co.omronsoft.iwnnime.mlaz"
+)
+
+for pkg in "${PACKAGES_DISABLED[@]}"; do
+    echo "    - Disabling $pkg"
+    adb -s "$DEVICE" shell "pm disable-user --user 0 $pkg" </dev/null >/dev/null 2>&1 || true
+done
 
 # 2. Block Lockscreen Ads, Telemetry & Background Daemons
 echo "==> Configuring ad blocking, telemetry restrictions, and background limits..."

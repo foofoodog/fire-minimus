@@ -56,15 +56,14 @@ When `minimus.sh` executes, it automatically detects the connected device and ou
 
 ## Repository Contents
 
-- `minimus.sh`: The master bash script for Linux / macOS.
-- `minimus.ps1`: Native Windows PowerShell script.
+- `minimus.sh`: The master bash script for Linux / macOS with inlined debloat rules.
+- `minimus.ps1`: Native Windows PowerShell script with inlined debloat rules.
 - `minimus.bat`: One-click Windows batch launcher (bypasses execution policy and runs `minimus.ps1`).
-- `packages_disabled.txt`: Full record of all 46 disabled system packages.
 - `wallpaper/black.png`: Pure black background asset for home and lock screens.
 
 ---
 
-## Preparation Steps (Before Running Restore)
+## Preparation Steps (Before Running Minimus)
 
 > [!TIP]
 > **Preferred Starting Point: Factory Reset**
