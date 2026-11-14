@@ -14,7 +14,7 @@ if %ERRORLEVEL% neq 0 (
     exit /b 1
 )
 
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0restore.ps1" %*
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0minimus.ps1" %*
 set SCRIPT_EXIT=%ERRORLEVEL%
 
 if %SCRIPT_EXIT% neq 0 (

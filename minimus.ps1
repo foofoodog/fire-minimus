@@ -30,7 +30,7 @@ if (-not $Device) {
     }
     elseif ($connected.Count -gt 1) {
         Write-Host "Multiple devices detected. Please pass serial as argument:" -ForegroundColor Yellow
-        Write-Host "  .\restore.ps1 <device-serial>"
+        Write-Host "  .\minimus.ps1 <device-serial>"
         exit 1
     }
     else {

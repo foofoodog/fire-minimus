@@ -31,7 +31,7 @@ The suite features **automatic hardware and form factor detection** that queries
 | **8-inch Tablets** | `800x1280` | Fire HD 8 10th Gen (`KFONWI` / `onyx`), Fire HD 8 8th Gen (`KFKAWI` / `karnak`) | **Verified & Supported** |
 | **10-inch Tablets** | `1200x1920` | Fire HD 10 9th Gen (`KFTRWI` / `maverick`), Fire HD 10 11th Gen (`tethys`) | **Supported** |
 
-When `restore.sh` executes, it automatically detects the connected device and outputs:
+When `minimus.sh` executes, it automatically detects the connected device and outputs:
 ```text
 ==> Target Device: <device-serial>
 ==> Detected Hardware: Amazon Fire HD 8 (8-inch display) [Model: KFONWI | Codename: onyx | Resolution: 800x1280]
@@ -56,9 +56,9 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 
 ## Repository Contents
 
-- `restore.sh`: The master bash script for Linux / macOS.
-- `restore.ps1`: Native Windows PowerShell restoration script.
-- `restore.bat`: One-click Windows batch launcher (bypasses execution policy and runs `restore.ps1`).
+- `minimus.sh`: The master bash script for Linux / macOS.
+- `minimus.ps1`: Native Windows PowerShell script.
+- `minimus.bat`: One-click Windows batch launcher (bypasses execution policy and runs `minimus.ps1`).
 - `packages_disabled.txt`: Full record of all 46 disabled system packages.
 - `wallpaper/black.png`: Pure black background asset for home and lock screens.
 
@@ -98,21 +98,21 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 ### On Linux / macOS:
 ```bash
 cd ~/code/fire-minimus
-./restore.sh
+./minimus.sh
 ```
-*(If multiple devices are plugged in: `./restore.sh <serial_number>`)*
+*(If multiple devices are plugged in: `./minimus.sh <serial_number>`)*
 
 ### On Windows (Native PowerShell / CMD):
 1. Ensure [Android Platform-Tools](https://developer.android.com/tools/releases/platform-tools) (`adb.exe`) is in your PATH.
 2. Open PowerShell or Command Prompt in `~/code/fire-minimus` and run:
 ```powershell
-.\restore.ps1
+.\minimus.ps1
 ```
-*(Or simply double-click **`restore.bat`** from Windows File Explorer).*
+*(Or simply double-click **`minimus.bat`** from Windows File Explorer).*
 
 > [!NOTE]
 > **Can this run inside WSL (Windows Subsystem for Linux)?**  
-> Yes, but WSL 2 runs inside a virtual machine and cannot see physical USB devices by default. To use `restore.sh` inside WSL, you must install [usbipd-win](https://github.com/dorssel/usbipd-win) on Windows to forward the USB port into WSL (`usbipd attach --wsl --busid <id>`). Because of this extra step, using **`restore.bat`** or **`restore.ps1`** natively on Windows is much simpler and faster.
+> Yes, but WSL 2 runs inside a virtual machine and cannot see physical USB devices by default. To use `minimus.sh` inside WSL, you must install [usbipd-win](https://github.com/dorssel/usbipd-win) on Windows to forward the USB port into WSL (`usbipd attach --wsl --busid <id>`). Because of this extra step, using **`minimus.bat`** or **`minimus.ps1`** natively on Windows is much simpler and faster.
 
 4. **Automatic Reboot:** Upon completion, the script automatically reboots the tablet to flush lingering background daemons and free up to 600 MB of inactive RAM. Once the tablet finishes booting, it will open directly to the clean, dark-mode home screen.
 
