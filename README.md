@@ -47,7 +47,9 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 
 ## Repository Contents
 
-- `restore.sh`: The master bash script that configures the device, fetches official APKs on the fly, and applies all settings.
+- `restore.sh`: The master bash script for Linux / macOS.
+- `restore.ps1`: Native Windows PowerShell restoration script.
+- `restore.bat`: One-click Windows batch launcher (bypasses execution policy and runs `restore.ps1`).
 - `packages_disabled.txt`: Full record of all 46 disabled system packages.
 - `wallpaper/black.png`: Pure black background asset for home and lock screens.
 
@@ -80,16 +82,28 @@ When `restore.sh` executes, it automatically detects the connected device and ou
 
 ## How to Restore
 
-1. Connect the tablet to this machine via USB.
+1. Connect the tablet to your computer via USB.
 2. Check the tablet screen and tap **"Always allow from this computer"** on the USB Debugging authorization prompt.
-3. Run the script:
+3. Run the script for your operating system:
 
+### On Linux / macOS:
 ```bash
 cd ~/code/fire-minimus
 ./restore.sh
 ```
+*(If multiple devices are plugged in: `./restore.sh <serial_number>`)*
 
-*(If multiple devices are plugged in, pass the target serial number: `./restore.sh <serial_number>`)*
+### On Windows (Native PowerShell / CMD):
+1. Ensure [Android Platform-Tools](https://developer.android.com/tools/releases/platform-tools) (`adb.exe`) is in your PATH.
+2. Open PowerShell or Command Prompt in `~/code/fire-minimus` and run:
+```powershell
+.\restore.ps1
+```
+*(Or simply double-click **`restore.bat`** from Windows File Explorer).*
+
+> [!NOTE]
+> **Can this run inside WSL (Windows Subsystem for Linux)?**  
+> Yes, but WSL 2 runs inside a virtual machine and cannot see physical USB devices by default. To use `restore.sh` inside WSL, you must install [usbipd-win](https://github.com/dorssel/usbipd-win) on Windows to forward the USB port into WSL (`usbipd attach --wsl --busid <id>`). Because of this extra step, using **`restore.bat`** or **`restore.ps1`** natively on Windows is much simpler and faster.
 
 4. **Automatic Reboot:** Upon completion, the script automatically reboots the tablet to flush lingering background daemons and free up to 600 MB of inactive RAM. Once the tablet finishes booting, it will open directly to the clean, dark-mode home screen.
 
